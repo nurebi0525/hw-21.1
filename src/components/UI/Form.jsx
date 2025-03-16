@@ -18,18 +18,19 @@ export const Form = (props) => {
   function dataValueHandler(e) {
     setData((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value === "magazine" ? parseInt(e.target.value) || 0 : e.target.value,
     }));
   }
 
   useEffect(() => {
     if (initialData) {
-      setData(initialData.id);
+      setData(initialData);
     }
   }, [initialData]);
 
   function onSubmit(e) {
     e.preventDefault();
+    console.log("onSubmit" , data)
     submitForm(data);
     setData({
       gun: "",

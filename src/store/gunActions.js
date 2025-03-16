@@ -77,3 +77,31 @@ export const getGunByIdThunk = (id) => {
     }
   };
 };
+
+
+
+export const updateGunThunk = (data) => {
+  return async (dispatch) => {
+    dispatch(loadingGun(true));
+    try {
+      const response = await fetch(`${BASE_URL}/${data.id}`, {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      dispatch(loadingGun(false));
+  
+    } catch (error) {
+      dispatch(errorHandler(error.message));
+      dispatch(loadingGun(false));
+    }
+  };
+};
+

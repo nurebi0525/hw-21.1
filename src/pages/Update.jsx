@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { Form } from "../components/UI/Form";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGunByIdThunk } from "../store/gunActions";
+import { getGunByIdThunk, updateGunThunk } from "../store/gunActions";
 
 export const Update = () => {
   const navigate = useNavigate();
@@ -18,9 +18,16 @@ export const Update = () => {
   function goBack() {
     navigate("/main");
   }
-
-  async function updateGun(e) {
-    e.preventDefault
+ 
+  async function updateGun(data) {
+    const updatedgun = {
+      ...data, 
+      id: id
+    }
+    dispatch(updateGunThunk(updatedgun))
+    setTimeout(()=>{
+      goBack()
+    },500)
   }
 
   return (

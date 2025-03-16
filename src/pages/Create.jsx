@@ -14,7 +14,7 @@ export const Create = () => {
   }
 
   async function createGun(params) {
-    dispatch(createGunThunk(params));
+   dispatch(createGunThunk(params));
     goBack();
   }
 
